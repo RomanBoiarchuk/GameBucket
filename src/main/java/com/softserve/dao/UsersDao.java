@@ -4,7 +4,7 @@ import com.softserve.models.User;
 
 import java.util.Set;
 
-public interface Users {
+public interface UsersDao {
     User getById(long id);
     Set<User> getAll();
     boolean add(User user);

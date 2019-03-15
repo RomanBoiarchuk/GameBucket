@@ -1,6 +1,6 @@
 package com.softserve.dao.daoImp;
 
-import com.softserve.dao.Games;
+import com.softserve.dao.GamesDao;
 import com.softserve.models.Game;
 import com.softserve.utilities.DataBaseUtilities;
 
@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GamesImp implements Games {
+public class GamesDaoImp implements GamesDao {
 
     private boolean exists(Game game) throws SQLException {
         Connection connection = DataBaseUtilities.getConnection();

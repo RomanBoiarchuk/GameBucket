@@ -4,7 +4,7 @@ import com.softserve.models.Game;
 
 import java.util.Set;
 
-public interface Games {
+public interface GamesDao {
     Game getById(long id);
     Set<Game> getAll();
     boolean add(Game game);

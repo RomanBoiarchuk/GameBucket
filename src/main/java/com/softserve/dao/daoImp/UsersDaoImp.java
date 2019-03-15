@@ -1,6 +1,6 @@
 package com.softserve.dao.daoImp;
 
-import com.softserve.dao.Users;
+import com.softserve.dao.UsersDao;
 import com.softserve.models.User;
 import com.softserve.models.UserRole;
 import com.softserve.utilities.DataBaseUtilities;
@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UsersImp implements Users {
+public class UsersDaoImp implements UsersDao {
 
     private User resultSetRowToUser(ResultSet resultSet) throws SQLException {
         User user = new User();

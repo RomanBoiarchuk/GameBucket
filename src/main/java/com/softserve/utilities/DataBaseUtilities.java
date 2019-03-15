@@ -1,13 +1,13 @@
 package com.softserve.utilities;
 
-import com.softserve.dao.Games;
-import com.softserve.dao.Marks;
-import com.softserve.dao.PlayLater;
-import com.softserve.dao.Users;
-import com.softserve.dao.daoImp.GamesImp;
-import com.softserve.dao.daoImp.MarksImp;
-import com.softserve.dao.daoImp.PlayLaterImp;
-import com.softserve.dao.daoImp.UsersImp;
+import com.softserve.dao.GamesDao;
+import com.softserve.dao.MarksDao;
+import com.softserve.dao.PlayLaterDao;
+import com.softserve.dao.UsersDao;
+import com.softserve.dao.daoImp.GamesDaoImp;
+import com.softserve.dao.daoImp.MarksDaoImp;
+import com.softserve.dao.daoImp.PlayLaterDaoImp;
+import com.softserve.dao.daoImp.UsersDaoImp;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,10 +22,10 @@ public final class DataBaseUtilities {
     private static String password;
     private static String url;
     private static Connection connection;
-    private static Users users = new UsersImp();
-    private static Games games = new GamesImp();
-    private static PlayLater playLater = new PlayLaterImp();
-    private static Marks marks = new MarksImp();
+    private static UsersDao usersDao = new UsersDaoImp();
+    private static GamesDao gamesDao = new GamesDaoImp();
+    private static PlayLaterDao playLaterDao = new PlayLaterDaoImp();
+    private static MarksDao marksDao = new MarksDaoImp();
 
     static {
         Properties properties = new Properties();
@@ -61,20 +61,20 @@ public final class DataBaseUtilities {
         }
     }
 
-    public static Marks getMarks() {
-        return marks;
+    public static MarksDao getMarksDao() {
+        return marksDao;
     }
 
-    public static PlayLater getPlayLater() {
-        return playLater;
+    public static PlayLaterDao getPlayLaterDao() {
+        return playLaterDao;
     }
 
-    public static Games getGames() {
-        return games;
+    public static GamesDao getGamesDao() {
+        return gamesDao;
     }
 
-    public static Users getUsers() {
-        return users;
+    public static UsersDao getUsersDao() {
+        return usersDao;
     }
 
     private DataBaseUtilities() {

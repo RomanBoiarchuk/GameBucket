@@ -4,7 +4,7 @@ import com.softserve.models.Mark;
 
 import java.util.Set;
 
-public interface Marks {
+public interface MarksDao {
     Mark getById(long userId, long gameId);
     Set<Mark> getAll();
     Set<Mark> getByuserId(long userId);

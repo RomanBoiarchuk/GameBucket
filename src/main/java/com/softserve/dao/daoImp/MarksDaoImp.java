@@ -1,6 +1,6 @@
 package com.softserve.dao.daoImp;
 
-import com.softserve.dao.Marks;
+import com.softserve.dao.MarksDao;
 import com.softserve.models.Mark;
 import com.softserve.utilities.DataBaseUtilities;
 
@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MarksImp implements Marks {
+public class MarksDaoImp implements MarksDao {
     private Mark resultSetRowToMark(ResultSet resultSet)
             throws SQLException {
         Mark mark = new Mark();

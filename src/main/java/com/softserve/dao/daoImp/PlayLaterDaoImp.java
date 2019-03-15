@@ -1,6 +1,6 @@
 package com.softserve.dao.daoImp;
 
-import com.softserve.dao.PlayLater;
+import com.softserve.dao.PlayLaterDao;
 import com.softserve.models.PlayLaterNote;
 import com.softserve.utilities.DataBaseUtilities;
 
@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PlayLaterImp implements PlayLater {
+public class PlayLaterDaoImp implements PlayLaterDao {
 
     private PlayLaterNote resultSetRowToPlayLaterNote(ResultSet resultSet)
             throws SQLException {
