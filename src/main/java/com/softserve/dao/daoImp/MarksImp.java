@@ -17,7 +17,8 @@ public class MarksImp implements Marks {
         mark.setMark(resultSet.getInt("mark"));
         return mark;
     }
-    private boolean exists (Mark mark) throws SQLException {
+
+    private boolean exists(Mark mark) throws SQLException {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement select = connection
                 .prepareStatement("SELECT * FROM marks WHERE "
@@ -29,6 +30,7 @@ public class MarksImp implements Marks {
         select.close();
         return exists;
     }
+
     @Override
     public Mark getById(long userId, long gameId) {
         Mark mark = null;
@@ -39,8 +41,8 @@ public class MarksImp implements Marks {
                 + "WHERE userId=? AND gameId=?;";
         try {
             select = connection.prepareStatement(selectString);
-            select.setLong(1,userId);
-            select.setLong(2,gameId);
+            select.setLong(1, userId);
+            select.setLong(2, gameId);
             resultSet = select.executeQuery();
             if (resultSet.next()) {
                 mark = resultSetRowToMark(resultSet);
@@ -85,7 +87,7 @@ public class MarksImp implements Marks {
                 + "WHERE userId=?;";
         try {
             select = connection.prepareStatement(selectString);
-            select.setLong(1,userId);
+            select.setLong(1, userId);
             resultSet = select.executeQuery();
             while (resultSet.next()) {
                 mark = resultSetRowToMark(resultSet);
@@ -108,7 +110,7 @@ public class MarksImp implements Marks {
             insert = connection.prepareStatement(insertString);
             insert.setLong(1, mark.getUserId());
             insert.setLong(2, mark.getGameId());
-            insert.setInt(3,mark.getMark());
+            insert.setInt(3, mark.getMark());
             insert.execute();
             return true;
         } catch (SQLException e) {

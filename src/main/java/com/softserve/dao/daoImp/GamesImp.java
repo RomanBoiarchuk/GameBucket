@@ -87,7 +87,8 @@ public class GamesImp implements Games {
     public boolean add(Game game) {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement insert = null;
-        String insertString = "INSERT INTO games(title, releaseYear, description, image) "
+        String insertString =
+                "INSERT INTO games(title, releaseYear, description, image) "
                 + "VALUES(?,?,?,?);";
         try {
             if (exists(game)) {

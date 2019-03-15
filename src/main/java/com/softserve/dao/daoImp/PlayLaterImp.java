@@ -15,7 +15,7 @@ public class PlayLaterImp implements PlayLater {
         PlayLaterNote playLaterNote = new PlayLaterNote();
         playLaterNote.setUserId(resultSet.getLong("userId"));
         playLaterNote.setGameId(resultSet.getLong("gameId"));
-        return  playLaterNote;
+        return playLaterNote;
     }
 
     @Override
@@ -39,6 +39,7 @@ public class PlayLaterImp implements PlayLater {
         }
         return playLaterNotes;
     }
+
     @Override
     public Set<PlayLaterNote> getByUserId(long userId) {
         Connection connection = DataBaseUtilities.getConnection();
@@ -46,11 +47,11 @@ public class PlayLaterImp implements PlayLater {
         Set<PlayLaterNote> playLaterNotes = new HashSet<>();
         PlayLaterNote playLaterNote = null;
         String selectString = "SELECT * FROM play_later "
-                +"WHERE userId=?;";
+                + "WHERE userId=?;";
         ResultSet resultSet = null;
         try {
             select = connection.prepareStatement(selectString);
-            select.setLong(1,userId);
+            select.setLong(1, userId);
             resultSet = select.executeQuery();
             while (resultSet.next()) {
                 playLaterNote = resultSetRowToPlayLaterNote(resultSet);
@@ -91,7 +92,7 @@ public class PlayLaterImp implements PlayLater {
         try {
             delete = connection.prepareStatement(deleteString);
             delete.setLong(1, playLaterNote.getUserId());
-            delete.setLong(2,playLaterNote.getGameId());
+            delete.setLong(2, playLaterNote.getGameId());
             delete.execute();
         } catch (SQLException e) {
             System.err.println(e.getMessage());
