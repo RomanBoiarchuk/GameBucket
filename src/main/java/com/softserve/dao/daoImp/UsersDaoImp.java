@@ -25,6 +25,18 @@ public class UsersDaoImp implements UsersDao {
         return user;
     }
 
+    private boolean exists(User user) throws SQLException {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = connection
+                .prepareStatement("SELECT * FROM users WHERE "
+                        + "id=?;");
+        select.setLong(1, user.getId());
+        ResultSet resultSet = select.executeQuery();
+        boolean exists = resultSet.next();
+        select.close();
+        return exists;
+    }
+
     @Override
     public User getById(long id) {
         Connection connection = DataBaseUtilities.getConnection();
@@ -37,7 +49,30 @@ public class UsersDaoImp implements UsersDao {
             selectUser = connection.prepareStatement(selectUserString);
             selectUser.setLong(1, id);
             resultSet = selectUser.executeQuery();
-            resultSet.beforeFirst();
+            if (resultSet.next()) {
+                user = resultSetRowToUser(resultSet);
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+        }
+        return user;
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement selectUser = null;
+        ResultSet resultSet = null;
+        User user = null;
+        String selectUserString = "SELECT * FROM users "
+                + "WHERE email=?;";
+        try {
+            selectUser = connection.prepareStatement(selectUserString);
+            selectUser.setString(1, email);
+            resultSet = selectUser.executeQuery();
             if (resultSet.next()) {
                 user = resultSetRowToUser(resultSet);
             } else {
@@ -70,18 +105,6 @@ public class UsersDaoImp implements UsersDao {
             System.err.println(e.getErrorCode());
         }
         return users;
-    }
-
-    private boolean exists(User user) throws SQLException {
-        Connection connection = DataBaseUtilities.getConnection();
-        PreparedStatement select = connection
-                .prepareStatement("SELECT * FROM users WHERE "
-                        + "id=?;");
-        select.setLong(1, user.getId());
-        ResultSet resultSet = select.executeQuery();
-        boolean exists = resultSet.next();
-        select.close();
-        return exists;
     }
 
     @Override

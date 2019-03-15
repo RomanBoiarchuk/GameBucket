@@ -31,8 +31,8 @@ public final class DataBaseUtilities {
         Properties properties = new Properties();
         InputStream inputStream = null;
         try {
-            inputStream = new FileInputStream(
-                    "src/main/resources/dbconfig.properties");
+            inputStream = DataBaseUtilities.class
+                    .getClassLoader().getResourceAsStream("dbconfig.properties");
             properties.load(inputStream);
             user = properties.getProperty("user");
             password = properties.getProperty("password");
