@@ -30,7 +30,7 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         User user = new User();
-        user.setEmail(req.getParameter("email"));
+        user.setEmail(req.getParameter("email").toLowerCase());
         user.setNickname(req.getParameter("nickname"));
         String password = req.getParameter("password");
         user.setPassword(UserService.encryptPassword(password));

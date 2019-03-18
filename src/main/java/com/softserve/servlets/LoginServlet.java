@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String email = req.getParameter("email");
+        String email = req.getParameter("email").toLowerCase();
         String password = req.getParameter("password");
         String encryptedPassword = UserService.encryptPassword(password);
         boolean userExists = UserService.authenticate(email, encryptedPassword);
