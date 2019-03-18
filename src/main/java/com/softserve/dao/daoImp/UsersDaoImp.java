@@ -37,6 +37,17 @@ public class UsersDaoImp implements UsersDao {
         return exists;
     }
 
+    private long getIdByEmail(String email) throws SQLException {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = connection
+                .prepareStatement("SELECT id FROM users WHERE "
+                + "email=?;");
+        select.setString(1,email);
+        ResultSet resultSet = select.executeQuery();
+        resultSet.next();
+        return resultSet.getLong("id");
+    }
+
     @Override
     public User getById(long id) {
         Connection connection = DataBaseUtilities.getConnection();
@@ -127,6 +138,7 @@ public class UsersDaoImp implements UsersDao {
             }
             insert.setString(4, user.getPassword());
             insert.execute();
+            user.setId(getIdByEmail(user.getEmail()));
             return true;
         } catch (SQLException e) {
             System.err.println(e.getMessage());

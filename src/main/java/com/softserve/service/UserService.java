@@ -2,6 +2,7 @@ package com.softserve.service;
 
 import com.softserve.models.User;
 import com.softserve.utilities.DataBaseUtilities;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class UserService {
 
@@ -19,4 +20,17 @@ public class UserService {
         return userFound;
     }
 
+    public static boolean checkEmail(String email) {
+        try {
+            User user = DataBaseUtilities.getUsersDao()
+                    .getByEmail(email);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
+    }
+
+    public static String encryptPassword(String password) {
+        return DigestUtils.md5Hex(password);
+    }
 }
