@@ -20,9 +20,9 @@ public class UserService {
         return userFound;
     }
 
-    public static boolean checkEmail(String email) {
+    public static boolean existsEmail(String email) {
         try {
-            User user = DataBaseUtilities.getUsersDao()
+            DataBaseUtilities.getUsersDao()
                     .getByEmail(email);
             return true;
         } catch (IllegalArgumentException ex) {
