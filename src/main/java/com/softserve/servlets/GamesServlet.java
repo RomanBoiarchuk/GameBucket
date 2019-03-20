@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Set;
 
 @WebServlet(name = "games", urlPatterns = "/games")
@@ -34,14 +33,13 @@ public class GamesServlet extends HttpServlet {
             throws ServletException, IOException {
         int offset = tryParse(req.getParameter("offset"), 0);
         int limit = tryParse(req.getParameter("limit"), DEFAULT_LIMIT);
-        req.setAttribute("offset", offset);
-        req.setAttribute("limit", limit);
         Set<GameDto> gameDtos = converter.convert(
                 DataBaseUtilities.getGamesDao()
                         .getGames(offset, limit)
         );
         req.setAttribute("gameDtos", gameDtos);
-        req.getRequestDispatcher("WEB-INF/games.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/games.jsp?offset=" + offset
+                + "&limit= " + limit).forward(req, resp);
     }
 
     @Override
