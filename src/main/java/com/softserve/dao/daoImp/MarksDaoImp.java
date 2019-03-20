@@ -1,6 +1,7 @@
 package com.softserve.dao.daoImp;
 
 import com.softserve.dao.MarksDao;
+import com.softserve.models.Game;
 import com.softserve.models.Mark;
 import com.softserve.utilities.DataBaseUtilities;
 
@@ -159,6 +160,32 @@ public class MarksDaoImp implements MarksDao {
             System.err.println(e.getMessage());
             System.err.println(e.getErrorCode());
         }
+    }
+
+    @Override
+    public Set<Game> getGames(long userId, long offset, int limit) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = null;
+        ResultSet resultSet = null;
+        Set<Game> games = new HashSet<>();
+        String selectUserString = "SELECT * FROM games "
+                + "JOIN marks ON games.id = marks.gameId "
+                + "WHERE marks.userId=? "
+                + "LIMIT ? OFFSET ?;";
+        try {
+            select = connection.prepareStatement(selectUserString);
+            select.setLong(1, userId);
+            select.setInt(2, limit);
+            select.setLong(3, offset);
+            resultSet = select.executeQuery();
+            while (resultSet.next()) {
+                games.add(GamesDaoImp.resultSetRowToGame(resultSet));
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+        }
+        return games;
     }
 }
 

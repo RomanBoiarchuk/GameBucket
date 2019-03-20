@@ -1,5 +1,6 @@
 package com.softserve.dao;
 
+import com.softserve.models.Game;
 import com.softserve.models.Mark;
 
 import java.util.Set;
@@ -11,5 +12,6 @@ public interface MarksDao {
     boolean add(Mark mark);
     boolean update(Mark mark);
     void delete(Mark mark);
+    Set<Game> getGames(long userId, long offset, int limit);
 }
 
