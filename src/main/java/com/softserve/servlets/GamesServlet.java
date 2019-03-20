@@ -37,9 +37,14 @@ public class GamesServlet extends HttpServlet {
                 DataBaseUtilities.getGamesDao()
                         .getGames(offset, limit)
         );
-        req.setAttribute("gameDtos", gameDtos);
-        req.getRequestDispatcher("WEB-INF/games.jsp?offset=" + offset
-                + "&limit= " + limit).forward(req, resp);
+        if (gameDtos.isEmpty()) {
+            resp.sendRedirect("/games?offset=" + (offset - limit)
+                    + "&limit=" + limit);
+        } else {
+            req.setAttribute("gameDtos", gameDtos);
+            req.getRequestDispatcher("WEB-INF/games.jsp?offset=" + offset
+                    + "&limit=" + limit).forward(req, resp);
+        }
     }
 
     @Override

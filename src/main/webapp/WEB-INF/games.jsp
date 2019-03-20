@@ -15,5 +15,16 @@
             </li>
         </c:forEach>
     </ul>
+    <div class="pagination">
+        <c:choose>
+            <c:when test='${param.get("offset") / param.get("limit") == 0}'>
+                <a href="" >&laquo;</a>
+            </c:when>
+            <c:otherwise>
+                <a href="/games?offset=${param.get("offset") - param.get("limit")}&limit=${param.get("limit")}">&laquo;</a>
+            </c:otherwise>
+        </c:choose>
+        <a href="/games?offset=${param.get("offset") + param.get("limit")}&limit=${param.get("limit")}">&raquo;</a>
+    </div>
 </body>
 </html>
