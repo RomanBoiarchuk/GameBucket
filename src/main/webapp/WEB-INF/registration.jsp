@@ -4,6 +4,7 @@
     <title>Registration</title>
 </head>
 <body>
+    <jsp:include page="Views/menu.jsp"/>
     <form name="registration" action="registration" method="post">
         <h2>Registration</h2>
         email <input type="email" name="email" required><br>

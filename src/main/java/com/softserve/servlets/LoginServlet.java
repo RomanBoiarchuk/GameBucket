@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
         if (user == null) {
             req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);
         } else {
-            resp.getWriter().print("<h2>Hello, " + user.getNickname() + "!</h2>");
+            resp.sendRedirect("/games");
         }
 
     }
@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
             User user = DataBaseUtilities.getUsersDao()
                     .getByEmail(email);
             session.setAttribute("user",user);
-            resp.getWriter().print("<h2>User found!</h2>");
+            resp.sendRedirect("/games");
         } else {
             resp.getWriter().print("<h2>Email or password is incorrect!</h2>");
         }

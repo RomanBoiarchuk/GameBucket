@@ -192,11 +192,11 @@ public class GamesDaoImp implements GamesDao {
     }
 
     @Override
-    public double calculateAverageMark(long gameId) {
+    public float calculateAverageMark(long gameId) {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement select = null;
         ResultSet resultSet = null;
-        double avgMark = 0;
+        float avgMark = 0;
         String selectString = "SELECT AVG(mark) AS avgMark FROM "
                 + "marks WHERE gameId=?;";
         try {
@@ -204,7 +204,7 @@ public class GamesDaoImp implements GamesDao {
             select.setLong(1,gameId);
             resultSet = select.executeQuery();
             if (resultSet.next()) {
-                avgMark = resultSet.getDouble("avgMark");
+                avgMark = resultSet.getFloat("avgMark");
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());

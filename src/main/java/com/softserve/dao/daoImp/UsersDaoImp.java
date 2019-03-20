@@ -192,5 +192,71 @@ public class UsersDaoImp implements UsersDao {
             System.err.println(e.getErrorCode());
         }
     }
+
+    @Override
+    public int calculatePlayLaterCount(long userId) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = null;
+        ResultSet resultSet = null;
+        int count = 0;
+        String selectString = "SELECT COUNT(mark) AS plCount FROM "
+                + "play_later WHERE userId=?;";
+        try {
+            select = connection.prepareStatement(selectString);
+            select.setLong(1, userId);
+            resultSet = select.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("plCount");
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+        }
+        return count;
+    }
+
+    @Override
+    public int calculateMarksCount(long userId) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = null;
+        ResultSet resultSet = null;
+        int count = 0;
+        String selectString = "SELECT COUNT(mark) AS marksCount FROM "
+                + "marks WHERE userId=?;";
+        try {
+            select = connection.prepareStatement(selectString);
+            select.setLong(1, userId);
+            resultSet = select.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("marksCount");
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+        }
+        return count;
+    }
+
+    @Override
+    public float calculateAvgMark(long userId) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = null;
+        ResultSet resultSet = null;
+        float avgMark = 0;
+        String selectString = "SELECT AVG(mark) AS avgMark FROM "
+                + "marks WHERE userId=?;";
+        try {
+            select = connection.prepareStatement(selectString);
+            select.setLong(1,userId);
+            resultSet = select.executeQuery();
+            if (resultSet.next()) {
+                avgMark = resultSet.getFloat("avgMark");
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+        }
+        return avgMark;
+    }
 }
 

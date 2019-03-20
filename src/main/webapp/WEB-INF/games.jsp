@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Games</title>
+    <title>GameBucket</title>
 </head>
 <body>
     <jsp:include page="Views/menu.jsp"/>

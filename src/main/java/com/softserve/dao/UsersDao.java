@@ -11,5 +11,8 @@ public interface UsersDao {
     boolean add(User user);
     boolean update(User user);
     void deleteById(long userId);
+    int calculatePlayLaterCount(long userId);
+    int calculateMarksCount(long userId);
+    float calculateAvgMark(long userId);
 }
 

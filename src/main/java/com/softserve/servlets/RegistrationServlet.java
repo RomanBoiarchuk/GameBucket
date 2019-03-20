@@ -22,7 +22,7 @@ public class RegistrationServlet extends HttpServlet {
         if (user == null) {
             req.getRequestDispatcher("WEB-INF/registration.jsp").forward(req, resp);
         } else {
-            resp.getWriter().print("<h2>Hello, " + user.getNickname() + "!</h2>");
+            resp.sendRedirect("/games");
         }
     }
 
@@ -37,6 +37,7 @@ public class RegistrationServlet extends HttpServlet {
         HttpSession session = req.getSession();
         if (DataBaseUtilities.getUsersDao().add(user)) {
             session.setAttribute("user", user);
+            resp.sendRedirect("/games");
         } else {
             resp.getWriter().print("<h2>Registration failed! Try later!</h2>");
         }
