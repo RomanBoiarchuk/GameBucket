@@ -1,5 +1,6 @@
 package com.softserve.dao;
 
+import com.softserve.models.Game;
 import com.softserve.models.PlayLaterNote;
 
 import java.util.Set;
@@ -9,5 +10,6 @@ public interface PlayLaterDao {
     Set<PlayLaterNote> getByUserId(long userId);
     boolean add(PlayLaterNote playLaterNote);
     void delete(PlayLaterNote playLaterNote);
+    Set<Game> getGames(long userId, long offset, int limit);
 }
 

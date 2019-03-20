@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MarksDaoImp implements MarksDao {
-    private Mark resultSetRowToMark(ResultSet resultSet)
+    static Mark resultSetRowToMark(ResultSet resultSet)
             throws SQLException {
         Mark mark = new Mark();
         mark.setUserId(resultSet.getLong("userId"));
@@ -18,7 +18,7 @@ public class MarksDaoImp implements MarksDao {
         return mark;
     }
 
-    private boolean exists(Mark mark) throws SQLException {
+    static boolean exists(Mark mark) throws SQLException {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement select = connection
                 .prepareStatement("SELECT * FROM marks WHERE "

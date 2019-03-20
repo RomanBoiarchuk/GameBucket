@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class GamesDaoImp implements GamesDao {
 
-    private boolean exists(Game game) throws SQLException {
+    static boolean exists(Game game) throws SQLException {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement select = connection
                 .prepareStatement("SELECT * FROM games WHERE "
@@ -22,7 +22,7 @@ public class GamesDaoImp implements GamesDao {
         return exists;
     }
 
-    private Game resultSetRowToGame(ResultSet resultSet) throws SQLException {
+    static Game resultSetRowToGame(ResultSet resultSet) throws SQLException {
         Game game = new Game();
         game.setId(resultSet.getLong("id"));
         game.setTitle(resultSet.getString("title"));

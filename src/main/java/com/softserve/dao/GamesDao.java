@@ -12,5 +12,6 @@ public interface GamesDao {
     boolean update(Game game);
     void deleteById(long gameId);
     float calculateAverageMark(long gameId);
+
 }
 

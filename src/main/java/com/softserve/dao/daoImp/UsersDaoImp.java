@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class UsersDaoImp implements UsersDao {
 
-    private User resultSetRowToUser(ResultSet resultSet) throws SQLException {
+    static User resultSetRowToUser(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getLong("id"));
         user.setNickname(resultSet.getString("nickname"));
@@ -25,7 +25,7 @@ public class UsersDaoImp implements UsersDao {
         return user;
     }
 
-    private boolean exists(User user) throws SQLException {
+    boolean exists(User user) throws SQLException {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement select = connection
                 .prepareStatement("SELECT * FROM users WHERE "

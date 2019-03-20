@@ -1,6 +1,7 @@
 package com.softserve.dao.daoImp;
 
 import com.softserve.dao.PlayLaterDao;
+import com.softserve.models.Game;
 import com.softserve.models.PlayLaterNote;
 import com.softserve.utilities.DataBaseUtilities;
 
@@ -8,9 +9,10 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class PlayLaterDaoImp implements PlayLaterDao {
 
-    private PlayLaterNote resultSetRowToPlayLaterNote(ResultSet resultSet)
+    static PlayLaterNote resultSetRowToPlayLaterNote(ResultSet resultSet)
             throws SQLException {
         PlayLaterNote playLaterNote = new PlayLaterNote();
         playLaterNote.setUserId(resultSet.getLong("userId"));
@@ -98,5 +100,31 @@ public class PlayLaterDaoImp implements PlayLaterDao {
             System.err.println(e.getMessage());
             System.err.println(e.getErrorCode());
         }
+    }
+
+    @Override
+    public Set<Game> getGames(long userId, long offset, int limit) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = null;
+        ResultSet resultSet = null;
+        Set<Game> games = new HashSet<>();
+        String selectUserString = "SELECT * FROM games "
+                + "JOIN play_later ON games.id = play_later.gameId "
+                + "WHERE play_later.userId=? "
+                + "LIMIT ? OFFSET ?;";
+        try {
+            select = connection.prepareStatement(selectUserString);
+            select.setLong(1, userId);
+            select.setInt(2, limit);
+            select.setLong(3, offset);
+            resultSet = select.executeQuery();
+            while (resultSet.next()) {
+                games.add(GamesDaoImp.resultSetRowToGame(resultSet));
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+        }
+        return games;
     }
 }
