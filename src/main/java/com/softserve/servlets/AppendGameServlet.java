@@ -43,7 +43,7 @@ public class AppendGameServlet extends HttpServlet {
         String fileDataName = "image";
         Part filePart = req.getPart(fileDataName);
         String targetFilePath = "/gamesAvatars/game" + game.getId();
-        if (filePart != null) {
+        if (filePart.getSize() != 0) {
             req.setAttribute("fileDataName", fileDataName);
             req.setAttribute("targetFilePath", targetFilePath);
             req.getRequestDispatcher("/fileUpload").include(req, resp);
