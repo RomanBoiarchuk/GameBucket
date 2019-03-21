@@ -31,9 +31,18 @@ public class GamesDaoImp implements GamesDao {
             game.setDescription(resultSet.getString("description"));
         }
         if (resultSet.getString("image") != null) {
-            game.setImg(resultSet.getString("img"));
+            game.setImg(resultSet.getString("image"));
         }
         return game;
+    }
+
+    static long maxId() throws SQLException{
+        Connection connection = DataBaseUtilities.getConnection();
+        Statement select = connection.createStatement();
+        String selectString = "SELECT MAX(id) AS maxId FROM games";
+        ResultSet resultSet = select.executeQuery(selectString);
+        resultSet.next();
+        return resultSet.getLong("maxId");
     }
 
     @Override
@@ -108,6 +117,7 @@ public class GamesDaoImp implements GamesDao {
                 insert.setString(4, null);
             }
             insert.execute();
+            game.setId(maxId());
             return true;
         } catch (SQLException e) {
             System.err.println(e.getMessage());

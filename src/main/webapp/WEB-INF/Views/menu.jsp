@@ -26,7 +26,7 @@
         </li>
         <c:if test="${!empty user && user.role == UserRole.ADMIN}">
             <li>
-                <a href="/append">Add New Game</a>
+                <a href="/appendGame">Add New Game</a>
             </li>
         </c:if>
     </ul>

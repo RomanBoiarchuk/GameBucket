@@ -199,7 +199,7 @@ public class UsersDaoImp implements UsersDao {
         PreparedStatement select = null;
         ResultSet resultSet = null;
         int count = 0;
-        String selectString = "SELECT COUNT(mark) AS plCount FROM "
+        String selectString = "SELECT COUNT(*) AS plCount FROM "
                 + "play_later WHERE userId=?;";
         try {
             select = connection.prepareStatement(selectString);
@@ -221,7 +221,7 @@ public class UsersDaoImp implements UsersDao {
         PreparedStatement select = null;
         ResultSet resultSet = null;
         int count = 0;
-        String selectString = "SELECT COUNT(mark) AS marksCount FROM "
+        String selectString = "SELECT COUNT(*) AS marksCount FROM "
                 + "marks WHERE userId=?;";
         try {
             select = connection.prepareStatement(selectString);
