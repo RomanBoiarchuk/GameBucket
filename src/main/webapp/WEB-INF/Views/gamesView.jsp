@@ -3,14 +3,27 @@
 <html>
 <head>
     <title>Games</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
-<ul>
+<ul class="game-list">
     <c:forEach items="${gameDtos}" var="gameDto">
         <li>
-            <h2>${gameDto.title} - ${gameDto.releaseYear}</h2>
-            <h1>${gameDto.avgMark}</h1>
-            <p>${gameDto.description}</p>
+            <div class="crop">
+                <c:choose>
+                    <c:when test="${!empty gameDto.img.trim()}">
+                        <img src="/FileDownload?filePath=gamesAvatars/${gameDto.img}&fileType=image/png">
+                    </c:when>
+                    <c:otherwise>
+                        <img src="/resources/images/defaultGame.png">
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="game-info">
+                <h2>${gameDto.title} - ${gameDto.releaseYear}</h2>
+                <h1>${gameDto.avgMark}</h1>
+                <p>${gameDto.description}</p>
+            </div>
         </li>
     </c:forEach>
 </ul>

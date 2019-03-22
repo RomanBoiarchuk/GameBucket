@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Games</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
     <jsp:include page="Views/menu.jsp"/>

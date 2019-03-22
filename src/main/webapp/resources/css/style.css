@@ -1,0 +1,22 @@
+.crop {
+    position: relative;
+    overflow: hidden;
+    width: 350px;
+    height: 300px;
+}
+.crop img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.game-list {
+
+}
+.game-list li {
+    display: flex;
+    flex-direction: row;
+}
+.game-list li .game-info {
+    margin-left: 100px;
+}
