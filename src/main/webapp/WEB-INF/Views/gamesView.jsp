@@ -5,6 +5,10 @@
     <title>Games</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="/resources/js/script.js"></script>
 </head>
 <body>
 <ul class="game-list">
@@ -33,10 +37,12 @@
             </div>
             <c:choose>
                 <c:when test="${playLaterNotesExist.get(gameDto) == true}">
-                    <i class="fas fa-bookmark bookmark-checked"></i>
+                    <i id="play-later-${gameDto.id}" class="fas fa-bookmark"
+                       onclick="playLaterToggle(${gameDto.id});"></i>
                 </c:when>
                 <c:otherwise>
-                    <i class="far fa-bookmark"></i>
+                    <i id="play-later-${gameDto.id}" class="far fa-bookmark"
+                       onclick="playLaterToggle(${gameDto.id});"></i>
                 </c:otherwise>
             </c:choose>
         </li>
