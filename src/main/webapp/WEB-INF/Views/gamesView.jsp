@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Games</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
@@ -21,23 +22,21 @@
             </div>
             <div class="game-info">
                 <h2>${gameDto.title} - ${gameDto.releaseYear}</h2>
-                <h1>${gameDto.avgMark}</h1>
+                <h1>${gameDto.avgMark}/10</h1>
+                <c:forEach var="i" begin="1" end="${gamesMarks.get(gameDto)}">
+                    <span class="fa fa-star"></span>
+                </c:forEach>
+                <c:forEach var="i" begin="${gamesMarks.get(gameDto) + 1}" end="10">
+                    <span class="far fa-star"></span>
+                </c:forEach>
                 <p>${gameDto.description}</p>
             </div>
             <c:choose>
                 <c:when test="${playLaterNotesExist.get(gameDto) == true}">
-                    <h2>True</h2>
+                    <i class="fas fa-bookmark bookmark-checked"></i>
                 </c:when>
                 <c:otherwise>
-                    <h2>False</h2>
-                </c:otherwise>
-            </c:choose>
-            <c:choose>
-                <c:when test="${gamesMarks.get(gameDto) == 0}">
-                    <h2>Not graded</h2>
-                </c:when>
-                <c:otherwise>
-                    <h2>${gamesMarks.get(gameDto)}</h2>
+                    <i class="far fa-bookmark"></i>
                 </c:otherwise>
             </c:choose>
         </li>
