@@ -10,6 +10,7 @@ public interface PlayLaterDao {
     Set<PlayLaterNote> getByUserId(long userId);
     boolean add(PlayLaterNote playLaterNote);
     void delete(PlayLaterNote playLaterNote);
+    boolean exists(PlayLaterNote playLaterNote);
     Set<Game> getGames(long userId, long offset, int limit);
 }
 

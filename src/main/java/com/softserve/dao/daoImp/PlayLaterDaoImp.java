@@ -103,6 +103,26 @@ public class PlayLaterDaoImp implements PlayLaterDao {
     }
 
     @Override
+    public boolean exists(PlayLaterNote playLaterNote) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = null;
+        String selectString = "SELECT * FROM play_later "
+                + "WHERE userId=? AND gameId=?;";
+        ResultSet resultSet = null;
+        try {
+            select = connection.prepareStatement(selectString);
+            select.setLong(1, playLaterNote.getUserId());
+            select.setLong(2, playLaterNote.getGameId());
+            resultSet = select.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+            return false;
+        }
+    }
+
+    @Override
     public Set<Game> getGames(long userId, long offset, int limit) {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement select = null;

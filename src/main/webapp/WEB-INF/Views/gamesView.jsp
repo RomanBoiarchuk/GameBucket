@@ -24,6 +24,22 @@
                 <h1>${gameDto.avgMark}</h1>
                 <p>${gameDto.description}</p>
             </div>
+            <c:choose>
+                <c:when test="${playLaterNotesExist.get(gameDto) == true}">
+                    <h2>True</h2>
+                </c:when>
+                <c:otherwise>
+                    <h2>False</h2>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${gamesMarks.get(gameDto) == 0}">
+                    <h2>Not graded</h2>
+                </c:when>
+                <c:otherwise>
+                    <h2>${gamesMarks.get(gameDto)}</h2>
+                </c:otherwise>
+            </c:choose>
         </li>
     </c:forEach>
 </ul>
