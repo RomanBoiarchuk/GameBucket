@@ -11,7 +11,6 @@ import com.softserve.models.PlayLaterNote;
 import com.softserve.models.User;
 import com.softserve.utilities.DataBaseUtilities;
 
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -56,6 +56,11 @@ public class MarksDaoImp implements MarksDao {
     }
 
     @Override
+    public boolean exists(long userId, long gameId) {
+        return getById(userId, gameId) != null;
+    }
+
+    @Override
     public Set<Mark> getAll() {
         Set<Mark> marks = new HashSet<>();
         Mark mark = null;

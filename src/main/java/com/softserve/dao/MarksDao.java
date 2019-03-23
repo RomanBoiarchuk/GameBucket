@@ -7,6 +7,7 @@ import java.util.Set;
 
 public interface MarksDao {
     Mark getById(long userId, long gameId);
+    boolean exists(long userId, long gameId);
     Set<Mark> getAll();
     Set<Mark> getByuserId(long userId);
     boolean add(Mark mark);
