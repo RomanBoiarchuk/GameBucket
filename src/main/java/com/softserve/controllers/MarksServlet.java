@@ -23,9 +23,9 @@ public class MarksServlet extends HttpServlet {
             resp.sendRedirect("/login");
         } else {
             req.setAttribute("gamesGetter", (GamesGetter)
-                    (offset, limit) -> DataBaseUtilities
-                            .getMarksDao()
-                            .getGames(user.getId(), offset, limit));
+                    (offset, limit, seek, fromYear, toYear) -> DataBaseUtilities
+                            .getMarksDao().getGames(user.getId(),
+                                    offset, limit, seek, fromYear, toYear));
             req.setAttribute("urlPattern", "/marks");
             req.getRequestDispatcher("/gamesView").forward(req, resp);
         }

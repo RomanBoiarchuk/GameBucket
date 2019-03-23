@@ -13,6 +13,7 @@ public interface MarksDao {
     boolean add(Mark mark);
     boolean update(Mark mark);
     void delete(Mark mark);
-    Set<Game> getGames(long userId, long offset, int limit);
+    Set<Game> getGames(long userId, long offset, int limit,
+                       String seek, int fromYear, int toYear);
 }
 

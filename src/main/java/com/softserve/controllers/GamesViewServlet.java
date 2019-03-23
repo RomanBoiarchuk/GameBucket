@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -24,6 +25,10 @@ import java.util.Set;
 @WebServlet(name = "gamesView", urlPatterns = "/gamesView")
 public class GamesViewServlet extends HttpServlet {
     private static final int DEFAULT_LIMIT = 5;
+    private static final String DEFAULT_SEEK = "";
+    private static final int DEFUALT_FROM_YEAR = 1958;
+    private static final int DEFAULT_TO_YEAR =
+            Calendar.getInstance().get(Calendar.YEAR);
     private static Converter<Game, GameDto> converter =
             new GameConverter();
 
@@ -75,21 +80,28 @@ public class GamesViewServlet extends HttpServlet {
             throws ServletException, IOException {
         int offset = tryParse(req.getParameter("offset"), 0);
         int limit = tryParse(req.getParameter("limit"), DEFAULT_LIMIT);
+        String seek = (req.getParameter("seek") != null)
+                ? req.getParameter("seek") : DEFAULT_SEEK;
+        int fromYear = tryParse(req.getParameter("fromYear"), DEFUALT_FROM_YEAR);
+        int toYear = tryParse(req.getParameter("toYear"), DEFAULT_TO_YEAR);
         GamesGetter gamesGetter = (GamesGetter) req.getAttribute("gamesGetter");
-        Set<GameDto> gameDtos = converter.convert(gamesGetter.getGames(offset, limit));
+        Set<GameDto> gameDtos = converter.convert(gamesGetter.getGames(offset, limit,
+                seek, fromYear, toYear));
         User user = (User) req.getSession().getAttribute("user");
         Map<GameDto, Boolean> playLaterNotesExist = playLaterNotesExist(gameDtos, user);
         Map<GameDto, Integer> gamesMarks = gamesMarks(gameDtos, user);
         String urlPattern = (String) req.getAttribute("urlPattern");
         if (gameDtos.isEmpty()) {
             resp.sendRedirect(urlPattern + "?offset=" + (offset - limit)
-                    + "&limit=" + limit);
+                    + "&limit=" + limit + "&seek=" + seek + "&fromYear="
+            + fromYear + "&toYear=" + toYear);
         } else {
             req.setAttribute("gameDtos", gameDtos);
             req.setAttribute("playLaterNotesExist", playLaterNotesExist);
             req.setAttribute("gamesMarks", gamesMarks);
             req.getRequestDispatcher("WEB-INF/games.jsp?offset=" + offset
-                    + "&limit=" + limit).forward(req, resp);
+                    + "&limit=" + limit + "&seek=" + seek + "&fromYear="
+            + fromYear + "&toYear=" + toYear).forward(req, resp);
         }
     }
 

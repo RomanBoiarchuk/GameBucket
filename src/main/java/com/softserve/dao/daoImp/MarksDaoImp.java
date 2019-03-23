@@ -168,20 +168,30 @@ public class MarksDaoImp implements MarksDao {
     }
 
     @Override
-    public Set<Game> getGames(long userId, long offset, int limit) {
+    public Set<Game> getGames(long userId, long offset, int limit,
+                              String seek, int fromYear, int toYear) {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement select = null;
         ResultSet resultSet = null;
         Set<Game> games = new HashSet<>();
         String selectUserString = "SELECT * FROM games "
                 + "JOIN marks ON games.id = marks.gameId "
-                + "WHERE marks.userId=? "
+                + "WHERE marks.userId=? AND UPPER(title) LIKE UPPER(?) "
+                + "AND releaseYear BETWEEN ? and ? "
                 + "LIMIT ? OFFSET ?;";
         try {
             select = connection.prepareStatement(selectUserString);
             select.setLong(1, userId);
-            select.setInt(2, limit);
-            select.setLong(3, offset);
+            seek = seek
+                    .replace("!", "!!")
+                    .replace("%", "!%")
+                    .replace("_", "!_")
+                    .replace("[", "![");
+            select.setString(2, '%' + seek + '%');
+            select.setInt(3, fromYear);
+            select.setInt(4, toYear);
+            select.setInt(5, limit);
+            select.setLong(6, offset);
             resultSet = select.executeQuery();
             while (resultSet.next()) {
                 games.add(GamesDaoImp.resultSetRowToGame(resultSet));

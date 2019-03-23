@@ -11,6 +11,7 @@ public interface PlayLaterDao {
     boolean add(PlayLaterNote playLaterNote);
     void delete(PlayLaterNote playLaterNote);
     boolean exists(PlayLaterNote playLaterNote);
-    Set<Game> getGames(long userId, long offset, int limit);
+    Set<Game> getGames(long userId, long offset, int limit,
+                       String seek, int fromYear, int toYear);
 }
 

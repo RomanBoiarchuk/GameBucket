@@ -177,18 +177,30 @@ public class GamesDaoImp implements GamesDao {
         }
     }
 
+
     @Override
-    public Set<Game> getGames(long offset, int limit) {
+    public Set<Game> getGames(long offset, int limit,
+                              String seek, int fromYear, int toYear) {
         Connection connection = DataBaseUtilities.getConnection();
         PreparedStatement select = null;
         ResultSet resultSet = null;
         Set<Game> games = new HashSet<>();
         String selectUserString = "SELECT * FROM games "
+                + "WHERE UPPER(title) LIKE UPPER(?) AND "
+                + "releaseYear BETWEEN ? AND ? "
                 + "LIMIT ? OFFSET ?;";
         try {
             select = connection.prepareStatement(selectUserString);
-            select.setInt(1, limit);
-            select.setLong(2, offset);
+            seek = seek
+                    .replace("!", "!!")
+                    .replace("%", "!%")
+                    .replace("_", "!_")
+                    .replace("[", "![");
+            select.setString(1, '%' + seek + '%');
+            select.setInt(2, fromYear);
+            select.setInt(3, toYear);
+            select.setInt(4, limit);
+            select.setLong(5, offset);
             resultSet = select.executeQuery();
             resultSet.beforeFirst();
             while (resultSet.next()) {

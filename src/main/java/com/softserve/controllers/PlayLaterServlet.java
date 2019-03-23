@@ -23,9 +23,9 @@ public class PlayLaterServlet extends HttpServlet {
             resp.sendRedirect("/login");
         } else {
             req.setAttribute("gamesGetter", (GamesGetter)
-                    (offset, limit) -> DataBaseUtilities
-                            .getPlayLaterDao()
-                            .getGames(user.getId(), offset, limit));
+                    (offset, limit, seek, fromYear, toYear) -> DataBaseUtilities
+                            .getPlayLaterDao().getGames(user.getId(),
+                                    offset, limit, seek, fromYear, toYear));
             req.setAttribute("urlPattern", "/playLater");
             req.getRequestDispatcher("/gamesView").forward(req, resp);
         }

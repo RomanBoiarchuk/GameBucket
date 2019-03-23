@@ -5,5 +5,6 @@ import com.softserve.models.Game;
 import java.util.Set;
 
 public interface GamesGetter {
-    Set<Game> getGames(long offset, int limit);
+    Set<Game> getGames(long offset, int limit,
+                       String seek, int fromYear, int toYear);
 }
