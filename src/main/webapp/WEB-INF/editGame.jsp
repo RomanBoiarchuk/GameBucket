@@ -29,5 +29,10 @@
     <button type="submit">Confirm</button>
     <a href="${previous}">cancel</a>
 </form>
+<form action="deleteGame" method="post">
+    <input type="hidden" name="previous" value="${previous}">
+    <input type="hidden" name="gameId" value="${game.id}">
+    <button type="submit">Delete Game</button>
+</form>
 </body>
 </html>

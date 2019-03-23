@@ -45,7 +45,7 @@
                             <c:if test="${gamesMarks.get(gameDto) == 0}"> disabled="disabled" </c:if>
                           onclick="deleteMark(${gameDto.id});"></button>
                 </div>
-                <p>${gameDto.description}</p>
+                <pre>${gameDto.description}</pre>
             </div>
             <c:choose>
                 <c:when test="${playLaterNotesExist.get(gameDto) == true}">
