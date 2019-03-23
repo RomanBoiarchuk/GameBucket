@@ -28,6 +28,11 @@
             <div class="game-info">
                 <h2>${gameDto.title} - ${gameDto.releaseYear}</h2>
                 <h1>${gameDto.avgMark}/10</h1>
+                <c:if test="${!empty sessionScope.user && sessionScope.user.role == 'ADMIN'}">
+                    <div class="editBox">
+                        <a href="/editGame?gameId=${gameDto.id}"><i class="fas fa-edit"></i></a>
+                    </div>
+                </c:if>
                 <div id="marks-${gameDto.id}">
                     <c:forEach var="i" begin="1" end="${gamesMarks.get(gameDto)}">
                         <span class="fa fa-star" onclick="setMark(${gameDto.id}, ${i});"></span>
