@@ -1,4 +1,4 @@
-package com.softserve.servlets;
+package com.softserve.service;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

@@ -1,4 +1,4 @@
-package com.softserve.servlets;
+package com.softserve.controllers;
 
 import com.softserve.dao.GamesDao;
 import com.softserve.models.Game;

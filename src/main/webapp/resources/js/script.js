@@ -50,3 +50,20 @@ function setMark(gameId, mark) {
         }
     });
 }
+
+function deleteMark(gameId) {
+    $("delete-mark-" + gameId).attr("disabled");
+    let icons = $("#marks-" + gameId + " .fa-star");
+    icons.each(function (index, element) {
+        $(element).addClass("far");
+        $(element).removeClass("fa");
+    });
+    $.get("validateLogin", function (data) {
+        let validateLogin = JSON.parse(data).loginned;
+        if (validateLogin === true) {
+            $.post("/deleteMark",{gameId:gameId});
+        } else {
+            window.location.replace("/login");
+        }
+    });
+}

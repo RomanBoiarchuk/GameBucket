@@ -1,4 +1,4 @@
-package com.softserve.servlets;
+package com.softserve.service;
 
 import com.softserve.models.User;
 import org.json.JSONException;

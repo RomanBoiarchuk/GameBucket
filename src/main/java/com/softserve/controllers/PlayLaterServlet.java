@@ -1,9 +1,7 @@
-package com.softserve.service;
+package com.softserve.controllers;
 
-import com.softserve.dto.Converter;
-import com.softserve.dto.UserConverter;
-import com.softserve.dto.UserDto;
 import com.softserve.models.User;
+import com.softserve.utilities.DataBaseUtilities;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,11 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "profile", urlPatterns = "/profile")
-public class ProfileServlet extends HttpServlet {
-
-    private static Converter<User, UserDto>
-            converter = new UserConverter();
+@WebServlet(name = "playLater", urlPatterns = "/playLater")
+public class PlayLaterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -27,10 +22,12 @@ public class ProfileServlet extends HttpServlet {
         if (user == null) {
             resp.sendRedirect("/login");
         } else {
-            UserDto userDto = converter.convert(user);
-            req.setAttribute("userDto", userDto);
-            req.getRequestDispatcher("WEB-INF/profile.jsp")
-                    .forward(req, resp);
+            req.setAttribute("gamesGetter", (GamesGetter)
+                    (offset, limit) -> DataBaseUtilities
+                            .getPlayLaterDao()
+                            .getGames(user.getId(), offset, limit));
+            req.setAttribute("urlPattern", "/playLater");
+            req.getRequestDispatcher("/gamesView").forward(req, resp);
         }
     }
 
@@ -39,5 +36,4 @@ public class ProfileServlet extends HttpServlet {
             throws ServletException, IOException {
         super.doPost(req, resp);
     }
-
 }

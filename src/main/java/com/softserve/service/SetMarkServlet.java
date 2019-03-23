@@ -1,4 +1,4 @@
-package com.softserve.servlets;
+package com.softserve.service;
 
 import com.softserve.dao.MarksDao;
 import com.softserve.models.Mark;
