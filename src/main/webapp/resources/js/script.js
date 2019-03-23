@@ -43,7 +43,7 @@ function setMark(gameId, mark) {
                     $(element).removeClass("fa");
                 }
                 element.disabled = false;
-                $("#delete-mark-" + gameId).disabled = false;
+                $("#delete-mark-" + gameId).removeAttr("disabled");
             });
         } else {
             window.location.replace("/login");

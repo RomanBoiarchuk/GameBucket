@@ -36,9 +36,9 @@
                         <span class="far fa-star"
                               onclick="setMark(${gameDto.id}, ${i});"></span>
                     </c:forEach>
-                    <span id="delete-mark-${gameDto.id}" class="far fa-window-close"
-                            <c:if test="${gamesMarks.get(gameDto) != 0}"> disabled="true" </c:if>
-                          onclick="deleteMark(${gameDto.id});"></span>
+                    <button id="delete-mark-${gameDto.id}" class="far fa-window-close"
+                            <c:if test="${gamesMarks.get(gameDto) == 0}"> disabled="disabled" </c:if>
+                          onclick="deleteMark(${gameDto.id});"></button>
                 </div>
                 <p>${gameDto.description}</p>
             </div>

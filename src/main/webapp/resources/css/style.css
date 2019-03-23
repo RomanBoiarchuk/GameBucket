@@ -26,4 +26,7 @@
 .fa-bookmark {
     font-size: 35px;
 }
+.fa-window-close:disabled {
+    color:blue;
+}
 
