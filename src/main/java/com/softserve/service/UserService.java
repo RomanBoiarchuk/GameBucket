@@ -30,6 +30,16 @@ public class UserService {
         }
     }
 
+    public static boolean existsNickname(String nickname) {
+        try {
+            DataBaseUtilities.getUsersDao()
+                    .getByNickname(nickname);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
+    }
+
     public static String encryptPassword(String password) {
         return DigestUtils.md5Hex(password);
     }

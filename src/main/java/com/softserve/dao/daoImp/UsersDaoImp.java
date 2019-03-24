@@ -97,6 +97,30 @@ public class UsersDaoImp implements UsersDao {
     }
 
     @Override
+    public User getByNickname(String nickname) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement selectUser = null;
+        ResultSet resultSet = null;
+        User user = null;
+        String selectUserString = "SELECT * FROM users "
+                + "WHERE nickname=?;";
+        try {
+            selectUser = connection.prepareStatement(selectUserString);
+            selectUser.setString(1, nickname);
+            resultSet = selectUser.executeQuery();
+            if (resultSet.next()) {
+                user = resultSetRowToUser(resultSet);
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+        }
+        return user;
+    }
+
+    @Override
     public Set<User> getAll() {
         Set<User> users = new HashSet<>();
         Connection conn = DataBaseUtilities.getConnection();
