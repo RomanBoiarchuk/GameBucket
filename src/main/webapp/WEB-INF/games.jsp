@@ -36,8 +36,15 @@
 &seek=${param.get("seek")}&fromYear=${param.get("fromYear")}&toYear=${param.get("toYear")}">&laquo;</a>
         </c:otherwise>
     </c:choose>
-    <a href="${urlPattern}?offset=${param.get("offset") + param.get("limit")}&limit=${param.get("limit")}
+    <c:choose>
+        <c:when test="${empty gameDtos}">
+            <a href="">&raquo;</a>
+        </c:when>
+        <c:otherwise>
+            <a href="${urlPattern}?offset=${param.get("offset") + param.get("limit")}&limit=${param.get("limit")}
 &seek=${param.get("seek")}&fromYear=${param.get("fromYear")}&toYear=${param.get("toYear")}">&raquo;</a>
+        </c:otherwise>
+    </c:choose>
 </div>
 </body>
 </html>

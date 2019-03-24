@@ -79,6 +79,9 @@ public class GamesViewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         int offset = tryParse(req.getParameter("offset"), 0);
+        if (offset < 0) {
+            offset = 0;
+        }
         int limit = tryParse(req.getParameter("limit"), DEFAULT_LIMIT);
         String seek = (req.getParameter("seek") != null)
                 ? req.getParameter("seek") : DEFAULT_SEEK;
@@ -91,18 +94,12 @@ public class GamesViewServlet extends HttpServlet {
         Map<GameDto, Boolean> playLaterNotesExist = playLaterNotesExist(gameDtos, user);
         Map<GameDto, Integer> gamesMarks = gamesMarks(gameDtos, user);
         String urlPattern = (String) req.getAttribute("urlPattern");
-        if (gameDtos.isEmpty()) {
-            resp.sendRedirect(urlPattern + "?offset=" + (offset - limit)
-                    + "&limit=" + limit + "&seek=" + seek + "&fromYear="
-            + fromYear + "&toYear=" + toYear);
-        } else {
-            req.setAttribute("gameDtos", gameDtos);
-            req.setAttribute("playLaterNotesExist", playLaterNotesExist);
-            req.setAttribute("gamesMarks", gamesMarks);
-            req.getRequestDispatcher("WEB-INF/games.jsp?offset=" + offset
-                    + "&limit=" + limit + "&seek=" + seek + "&fromYear="
-            + fromYear + "&toYear=" + toYear).forward(req, resp);
-        }
+        req.setAttribute("gameDtos", gameDtos);
+        req.setAttribute("playLaterNotesExist", playLaterNotesExist);
+        req.setAttribute("gamesMarks", gamesMarks);
+        req.getRequestDispatcher("WEB-INF/games.jsp?offset=" + offset
+                + "&limit=" + limit + "&seek=" + seek + "&fromYear="
+                + fromYear + "&toYear=" + toYear).forward(req, resp);
     }
 
     @Override

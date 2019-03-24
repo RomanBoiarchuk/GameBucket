@@ -10,6 +10,9 @@
 </head>
 <body>
 <ul class="game-list">
+    <c:if test="${empty gameDtos}">
+        <h3>No games were found!</h3>
+    </c:if>
     <c:forEach items="${gameDtos}" var="gameDto">
         <li>
             <div class="crop">
