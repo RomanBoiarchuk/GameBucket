@@ -2,7 +2,7 @@ function playLaterToggle(gameId) {
     let icon = $("#play-later-" + gameId);
     icon.disabled = true;
     $.get("validateLogin", function (data) {
-       let validateLogin = JSON.parse(data).loginned;
+        let validateLogin = JSON.parse(data).loginned;
         if (validateLogin === true) {
             $.get("playLaterToggle?gameId=" + gameId, function (data) {
                 let result = JSON.parse(data);
@@ -28,7 +28,7 @@ function playLaterToggle(gameId) {
 function setMark(gameId, mark) {
     let icons = $("#marks-" + gameId + " .fa-star");
     icons.each(function (index, element) {
-       element.disabled = true;
+        element.disabled = true;
     });
     $.get("validateLogin", function (data) {
         let validateLogin = JSON.parse(data).loginned;
@@ -61,9 +61,33 @@ function deleteMark(gameId) {
     $.get("validateLogin", function (data) {
         let validateLogin = JSON.parse(data).loginned;
         if (validateLogin === true) {
-            $.post("/deleteMark",{gameId:gameId});
+            $.post("/deleteMark", {gameId: gameId});
         } else {
             window.location.replace("/login");
         }
     });
+}
+
+function hoverStars(divId, index) {
+    let stars = $("#" + divId).children(".fa-star");
+    for (let i = 0; i < index; ++i) {
+        stars[i].classList.add('hovered-star');
+    }
+    for (let i = index; i<10; ++i) {
+        stars[i].classList.add('unhovered-star');
+    }
+    $(".unhovered-star").css({"fontWeight": "400"});
+    $(".hovered-star").css({"fontWeight": "900"});
+}
+
+function unhoverStars(divId, index) {
+    let stars = $("#" + divId).children(".fa-star");
+    $(".hovered-star").css({"fontWeight": "400"});
+    $(".fa").css({"fontWeight": "900"});
+    for (let i = 0; i < index; ++i) {
+        stars[i].classList.remove('hovered-star');
+    }
+    for (let i = index; i<10; ++i) {
+        stars[i].classList.remove('unhovered-star');
+    }
 }

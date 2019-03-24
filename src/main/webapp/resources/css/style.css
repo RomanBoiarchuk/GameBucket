@@ -21,11 +21,16 @@
 .game-list li .game-info {
     margin-left: 100px;
 }
+.far:hover, .hovered-star {
+    font-weight: 900;
+}
 .fa-star {
     font-size: 25px;
+    transition: 0.3s ease-in-out;
 }
 .fa-bookmark {
     font-size: 35px;
+    height: 34px;
 }
 .fa-window-close:disabled {
     color:blue;
