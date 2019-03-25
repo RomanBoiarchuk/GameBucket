@@ -234,5 +234,27 @@ public class GamesDaoImp implements GamesDao {
         }
         return avgMark;
     }
+
+    @Override
+    public int calculateMarks(long gameId) {
+        Connection connection = DataBaseUtilities.getConnection();
+        PreparedStatement select = null;
+        ResultSet resultSet = null;
+        int marksCount = 0;
+        String selectString = "SELECT COUNT(mark) AS marksCount FROM "
+                + "marks WHERE gameId=?;";
+        try {
+            select = connection.prepareStatement(selectString);
+            select.setLong(1,gameId);
+            resultSet = select.executeQuery();
+            if (resultSet.next()) {
+                marksCount = resultSet.getInt("marksCount");
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            System.err.println(e.getErrorCode());
+        }
+        return marksCount;
+    }
 }
 

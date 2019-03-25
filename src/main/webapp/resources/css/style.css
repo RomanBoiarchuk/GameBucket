@@ -1,9 +1,36 @@
+/* GENERAL */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("/resources/images/background.jpg");
+    background-attachment: fixed;
+    background-color: rgba(202,202,202,0.9);
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}
+
+.background-body {
+    background: rgba(236,236,236,0.6);
+}
+
+.content-container {
+    padding: 30px;
+    border: 2px solid black;
+    opacity: 0.85;
+    margin: auto;
+    width:900px;
+}
+
+/* *********** MENU  ********** */
+
+/* ************ IMAGES *************** */
 .crop {
     position: relative;
     overflow: hidden;
     width: 350px;
     height: 300px;
 }
+
 .crop img {
     z-index: -1;
     position: absolute;
@@ -11,28 +38,37 @@
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+/* ************ GAMES  ********** */
 .game-list {
 
 }
+
 .game-list li {
     display: flex;
     flex-direction: row;
 }
+
 .game-list li .game-info {
     margin-left: 100px;
 }
+
+/* ***** ICONS  ******* */
 .far:hover, .hovered-star {
     font-weight: 900;
 }
+
 .fa-star {
     font-size: 25px;
     transition: 0.3s ease-in-out;
 }
+
 .fa-bookmark {
     font-size: 35px;
     height: 34px;
 }
+
 .fa-window-close:disabled {
-    color:blue;
+    color: blue;
 }
 

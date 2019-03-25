@@ -28,6 +28,7 @@
             <div class="game-info">
                 <h2>${gameDto.title} - ${gameDto.releaseYear}</h2>
                 <h1>${gameDto.avgMark}/10</h1>
+                <h4>${gameDto.marksCount} marked</h4>
                 <c:if test="${!empty sessionScope.user && sessionScope.user.role == 'ADMIN'}">
                     <div class="editBox">
                         <a href="/editGame?gameId=${gameDto.id}"><i class="fas fa-edit"></i></a>
