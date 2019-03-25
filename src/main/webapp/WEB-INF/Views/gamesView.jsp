@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Games</title>
@@ -27,8 +28,11 @@
             </div>
             <div class="game-info">
                 <h2>${gameDto.title} - ${gameDto.releaseYear}</h2>
-                <h1>${gameDto.avgMark}/10</h1>
-                <h4>${gameDto.marksCount} marked</h4>
+                <h1><fmt:formatNumber
+                        value="${gameDto.avgMark}"
+                        minFractionDigits="1"
+                        maxFractionDigits="1"/>/10</h1>
+                <h4>${gameDto.marksCount} players marked</h4>
                 <c:if test="${!empty sessionScope.user && sessionScope.user.role == 'ADMIN'}">
                     <div class="editBox">
                         <a href="/editGame?gameId=${gameDto.id}"><i class="fas fa-edit"></i></a>

@@ -4,30 +4,33 @@
 <html>
 <head>
     <title>Profile</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
 </head>
 <body>
-
     <div class="background-body">
-        <jsp:include page="Views/menu.jsp"/>
-        <div class="content-container">
-            <h3>Nickname: ${userDto.nickname}</h3>
-            <h3>Email: ${userDto.email}</h3>
-            <h3>Games to play later: ${userDto.playLaterGames}</h3>
-            <h3>Marked games: ${userDto.gamesMarked}</h3>
-            <h3>Average mark: ${userDto.avgMark}</h3>
-            <h3>Role:
-                <c:choose>
-                    <c:when test="${userDto.role == UserRole.ADMIN}">
-                        admin
-                    </c:when>
-                    <c:otherwise>
-                        user
-                    </c:otherwise>
-                </c:choose>
-            </h3>
-            <a href="/signout">Sign out</a>
+        <div class="flex-box">
+            <jsp:include page="Views/menu.jsp"/>
+            <div class="content-container">
+                <h3>Nickname: ${userDto.nickname}</h3>
+                <h3>Email: ${userDto.email}</h3>
+                <h3>Games to play later: ${userDto.playLaterGames}</h3>
+                <h3>Marked games: ${userDto.gamesMarked}</h3>
+                <h3>Average mark: ${userDto.avgMark}</h3>
+                <h3>Role:
+                    <c:choose>
+                        <c:when test="${userDto.role == UserRole.ADMIN}">
+                            admin
+                        </c:when>
+                        <c:otherwise>
+                            user
+                        </c:otherwise>
+                    </c:choose>
+                </h3>
+                <a href="/signout">Sign out</a>
+            </div>
         </div>
     </div>
-
 </body>
 </html>

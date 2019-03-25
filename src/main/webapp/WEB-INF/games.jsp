@@ -12,40 +12,42 @@
 <body>
 
 <div class="background-body">
-    <jsp:include page="Views/menu.jsp"/>
-    <div class="content-container">
-        <form class="search-box" action="${urlPattern}" method="get" align="center">
-            <input type="hidden" name="limit" value="${param.get("limit")}">
-            <input type="hidden" name="offset" value="0">
-            <input type="text" name="seek" value="${param.get("seek")}" placeholder="search">
-            From year <input type="number" name="fromYear" value="${param.get("fromYear")}" min="1958"
-                             max=<%=Calendar.getInstance().get(Calendar.YEAR)%>>
-            To year <input type="number" name="toYear" value="${param.get("toYear")}"
-                           min="1958" max=<%=Calendar.getInstance().get(Calendar.YEAR)%>>
-            <button type="submit">Search</button>
-        </form>
+    <div class="flex-box">
+        <jsp:include page="Views/menu.jsp"/>
+        <div class="content-container">
+            <form class="search-box" action="${urlPattern}" method="get" align="center">
+                <input type="hidden" name="limit" value="${param.get("limit")}">
+                <input type="hidden" name="offset" value="0">
+                <input type="text" name="seek" value="${param.get("seek")}" placeholder="search">
+                From year <input type="number" name="fromYear" value="${param.get("fromYear")}" min="1958"
+                                 max=<%=Calendar.getInstance().get(Calendar.YEAR)%>>
+                To year <input type="number" name="toYear" value="${param.get("toYear")}"
+                               min="1958" max=<%=Calendar.getInstance().get(Calendar.YEAR)%>>
+                <button type="submit">Search</button>
+            </form>
 
-        <jsp:include page="Views/gamesView.jsp"/>
+            <jsp:include page="Views/gamesView.jsp"/>
 
-        <div class="pagination">
-            <c:choose>
-                <c:when test='${param.get("offset") / param.get("limit") == 0}'>
-                    <a href="">&laquo;</a>
-                </c:when>
-                <c:otherwise>
-                    <a href="${urlPattern}?offset=${param.get("offset") - param.get("limit")}&limit=${param.get("limit")}
+            <div class="pagination">
+                <c:choose>
+                    <c:when test='${param.get("offset") / param.get("limit") == 0}'>
+                        <a href="">&laquo;</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${urlPattern}?offset=${param.get("offset") - param.get("limit")}&limit=${param.get("limit")}
 &seek=${param.get("seek")}&fromYear=${param.get("fromYear")}&toYear=${param.get("toYear")}">&laquo;</a>
-                </c:otherwise>
-            </c:choose>
-            <c:choose>
-                <c:when test="${empty gameDtos}">
-                    <a href="">&raquo;</a>
-                </c:when>
-                <c:otherwise>
-                    <a href="${urlPattern}?offset=${param.get("offset") + param.get("limit")}&limit=${param.get("limit")}
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${empty gameDtos}">
+                        <a href="">&raquo;</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${urlPattern}?offset=${param.get("offset") + param.get("limit")}&limit=${param.get("limit")}
 &seek=${param.get("seek")}&fromYear=${param.get("fromYear")}&toYear=${param.get("toYear")}">&raquo;</a>
-                </c:otherwise>
-            </c:choose>
+                    </c:otherwise>
+                </c:choose>
+            </div>
         </div>
     </div>
 </div>
