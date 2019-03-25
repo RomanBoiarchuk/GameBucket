@@ -19,9 +19,9 @@
                 <input type="hidden" name="limit" value="${param.get("limit")}">
                 <input type="hidden" name="offset" value="0">
                 <input type="text" name="seek" value="${param.get("seek")}" placeholder="search">
-                From year <input type="number" name="fromYear" value="${param.get("fromYear")}" min="1958"
+                <input class="year-input" type="number" name="fromYear" value="${param.get("fromYear")}" min="1958"
                                  max=<%=Calendar.getInstance().get(Calendar.YEAR)%>>
-                To year <input type="number" name="toYear" value="${param.get("toYear")}"
+                <input class="year-input" type="number" name="toYear" value="${param.get("toYear")}"
                                min="1958" max=<%=Calendar.getInstance().get(Calendar.YEAR)%>>
                 <button type="submit">Search</button>
             </form>
@@ -40,10 +40,10 @@
                 </c:choose>
                 <c:choose>
                     <c:when test="${empty gameDtos}">
-                        <a href="">&raquo;</a>
+                        <a class="forward" href="">&raquo;</a>
                     </c:when>
                     <c:otherwise>
-                        <a href="${urlPattern}?offset=${param.get("offset") + param.get("limit")}&limit=${param.get("limit")}
+                        <a class="forward" href="${urlPattern}?offset=${param.get("offset") + param.get("limit")}&limit=${param.get("limit")}
 &seek=${param.get("seek")}&fromYear=${param.get("fromYear")}&toYear=${param.get("toYear")}">&raquo;</a>
                     </c:otherwise>
                 </c:choose>

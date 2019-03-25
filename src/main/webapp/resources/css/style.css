@@ -24,8 +24,12 @@ body {
     opacity: 0.85;
     margin-top: 40px;
     margin-right: 100px;
-    width:900px;
-    min-width: 900px;
+    width:1000px;
+    min-width: 1000px;
+    min-height: 75vh;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 40px;
 }
 
 /* *********** MENU  ********** */
@@ -33,9 +37,10 @@ body {
     margin-top: 40px;
 }
 .menu ul {
-    border: 1px solid black;
+    border: 2px solid black;
+    border-radius: 20px;
     opacity: 0.85;
-    width: 150px;
+    width: 200px;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -45,13 +50,20 @@ body {
 }
 .menu ul li a {
     text-decoration: none;
+    color:black;
     width: 100%;
-    height: 45px;
+    height: 55px;
     line-height: 45px;
     display: block;
     border-bottom: 1px solid black;
+    border-radius: 20px;
     text-align: center;
     vertical-align: middle;
+    cursor: default;
+}
+
+.menu ul li a:hover {
+    background-color: rgba(255,255,255,0.6);
 }
 /* ************ IMAGES *************** */
 .crop {
@@ -69,20 +81,115 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.crop .editBox {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+}
+
+.crop:hover img {
+    opacity: 0.5;
+}
+.crop:hover .editBox {
+    display: block;
+    opacity: 1;
+}
+
+.editBox a i {
+    color:rgba(236,236,236,1);
+    font-size:15px;
+}
+/* ************ FORMS *********** */
+input:focus, button:focus {
+    outline: none;
+}
+
+input, button, label {
+    border-radius: 10px;
+    opacity: 0.7;
+}
+/* ************ SEARCH ********** */
+.search-box input {
+    height: 30px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.search-box button {
+    padding: 5px 10px;
+}
+
+.search-box .year-input {
+    width: 65px;
+    padding-right: 3px;
+}
+
 /* ************ GAMES  ********** */
 .game-list {
-
+    margin: 0;
+    padding: 0;
 }
 
 .game-list li {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    padding: 20px 0;
 }
 
 .game-list li .game-info {
-    margin-left: 100px;
+    margin-left: 75px;
+    width: 351px;
 }
 
+.game-info .row-1 i {
+    float: right;
+}
+
+.game-info .row-1 h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.game-info .row-2 .average-mark h1 {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.game-info .row-2 .average-mark span {
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.game-info .row-2 .marks {
+    margin-top: 15px;
+}
+
+.game-info p {
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ***** PAGINATION ****** */
+.pagination {
+    position: absolute;
+    bottom: 20px;
+    width:100%;
+    text-align: center;
+}
+
+.pagination a {
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 36px;
+    color: black;
+}
+
+.pagination .forward {
+    margin-left: 10px;
+}
 /* ***** ICONS  ******* */
 .far:hover, .hovered-star {
     font-weight: 900;

@@ -12,7 +12,7 @@
 <body>
 <ul class="game-list">
     <c:if test="${empty gameDtos}">
-        <h3>No games were found!</h3>
+        <h1 style="text-align: center;">No games were found!</h1>
     </c:if>
     <c:forEach items="${gameDtos}" var="gameDto">
         <li>
@@ -25,46 +25,51 @@
                         <img src="/resources/images/defaultGame.png">
                     </c:otherwise>
                 </c:choose>
-            </div>
-            <div class="game-info">
-                <h2>${gameDto.title} - ${gameDto.releaseYear}</h2>
-                <h1><fmt:formatNumber
-                        value="${gameDto.avgMark}"
-                        minFractionDigits="1"
-                        maxFractionDigits="1"/>/10</h1>
-                <h4>${gameDto.marksCount} players marked</h4>
                 <c:if test="${!empty sessionScope.user && sessionScope.user.role == 'ADMIN'}">
                     <div class="editBox">
-                        <a href="/editGame?gameId=${gameDto.id}"><i class="fas fa-edit"></i></a>
+                        <a href="/editGame?gameId=${gameDto.id}"><i title="Edit" class="fas fa-edit"></i></a>
                     </div>
                 </c:if>
-                <div id="marks-${gameDto.id}">
-                    <c:forEach var="i" begin="1" end="${gamesMarks.get(gameDto)}">
-                        <span class="fa fa-star" onclick="setMark(${gameDto.id}, ${i});"
-                        onmouseover='hoverStars("marks-${gameDto.id}", ${i});' title="${i}/10"
-                        onmouseout='unhoverStars("marks-${gameDto.id}", ${i});'></span>
-                    </c:forEach>
-                    <c:forEach var="i" begin="${gamesMarks.get(gameDto) + 1}" end="10">
-                        <span class="far fa-star" onclick="setMark(${gameDto.id}, ${i});"
-                        onmouseover='hoverStars("marks-${gameDto.id}", ${i});' title="${i}/10"
-                        onmouseout='unhoverStars("marks-${gameDto.id}", ${i});'></span>
-                    </c:forEach>
-                    <button id="delete-mark-${gameDto.id}" class="far fa-window-close"
-                            <c:if test="${gamesMarks.get(gameDto) == 0}"> disabled="disabled" </c:if>
-                          onclick="deleteMark(${gameDto.id});" title="cancel"></button>
-                </div>
-                <pre>${gameDto.description}</pre>
             </div>
-            <c:choose>
-                <c:when test="${playLaterNotesExist.get(gameDto) == true}">
-                    <i id="play-later-${gameDto.id}" class="fas fa-bookmark"
-                       title="Play Later" onclick="playLaterToggle(${gameDto.id});"></i>
-                </c:when>
-                <c:otherwise>
-                    <i id="play-later-${gameDto.id}" class="far fa-bookmark"
-                       title="Play Later" onclick="playLaterToggle(${gameDto.id});"></i>
-                </c:otherwise>
-            </c:choose>
+            <div class="game-info">
+                <div class="row-1">
+                    <c:choose>
+                        <c:when test="${playLaterNotesExist.get(gameDto) == true}">
+                            <i id="play-later-${gameDto.id}" class="fas fa-bookmark"
+                               title="Play Later" onclick="playLaterToggle(${gameDto.id});"></i>
+                        </c:when>
+                        <c:otherwise>
+                            <i id="play-later-${gameDto.id}" class="far fa-bookmark"
+                               title="Play Later" onclick="playLaterToggle(${gameDto.id});"></i>
+                        </c:otherwise>
+                    </c:choose>
+                    <h2 class="title">${gameDto.title} - ${gameDto.releaseYear}</h2>
+                </div>
+                <div class="row-2">
+                    <div class="average-mark">
+                        <h1><fmt:formatNumber
+                                value="${gameDto.avgMark}"
+                                minFractionDigits="1"
+                                maxFractionDigits="1"/>/10 <span>${gameDto.marksCount} players marked</span></h1>
+                    </div>
+                    <div class="marks" id="marks-${gameDto.id}">
+                        <c:forEach var="i" begin="1" end="${gamesMarks.get(gameDto)}">
+                        <span class="fa fa-star" onclick="setMark(${gameDto.id}, ${i});"
+                              onmouseover='hoverStars("marks-${gameDto.id}", ${i});' title="${i}/10"
+                              onmouseout='unhoverStars("marks-${gameDto.id}", ${i});'></span>
+                        </c:forEach>
+                        <c:forEach var="i" begin="${gamesMarks.get(gameDto) + 1}" end="10">
+                        <span class="far fa-star" onclick="setMark(${gameDto.id}, ${i});"
+                              onmouseover='hoverStars("marks-${gameDto.id}", ${i});' title="${i}/10"
+                              onmouseout='unhoverStars("marks-${gameDto.id}", ${i});'></span>
+                        </c:forEach>
+                        <span id="delete-mark-${gameDto.id}" class="far fa-window-close"
+                                <c:if test="${gamesMarks.get(gameDto) == 0}"> disabled="disabled" </c:if>
+                                onclick="deleteMark(${gameDto.id});" title="cancel"></span>
+                    </div>
+                </div>
+                <p>${gameDto.description}</p>
+            </div>
         </li>
     </c:forEach>
 </ul>
