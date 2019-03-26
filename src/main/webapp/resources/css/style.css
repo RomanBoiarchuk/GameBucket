@@ -19,17 +19,20 @@ body {
     justify-content: center;
 }
 .content-container {
-    padding: 30px;
+    padding: 50px;
+    box-sizing: border-box;
     border: 2px solid black;
     opacity: 0.85;
     margin-top: 40px;
     margin-right: 100px;
-    width:1000px;
-    min-width: 1000px;
-    min-height: 75vh;
     border-radius: 20px;
     position: relative;
     margin-bottom: 40px;
+}
+.games-container {
+    width:1000px;
+    min-width: 1000px;
+    min-height: 75vh;
 }
 
 /* *********** MENU  ********** */
@@ -117,12 +120,36 @@ input, button, label {
 }
 
 .search-box button {
-    padding: 5px 10px;
+    padding: 5px 15px;
+    border: 1px solid black;
+}
+
+.search-box button:hover {
+    background: rgba(202,202,202,1);
+    cursor: pointer;
 }
 
 .search-box .year-input {
     width: 65px;
     padding-right: 3px;
+}
+
+.profile {
+    position: relative;
+}
+
+.profile form a {
+    text-decoration: none;
+    color: black;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: rgba(202,202,202,0.7);
+    box-sizing: border-box;
+    display: inline-block;
+}
+.profile form a:hover {
+    background: rgba(202,202,202,1);
 }
 
 /* ************ GAMES  ********** */

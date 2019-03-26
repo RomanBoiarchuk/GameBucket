@@ -14,7 +14,7 @@
 <div class="background-body">
     <div class="flex-box">
         <jsp:include page="Views/menu.jsp"/>
-        <div class="content-container">
+        <div class="content-container games-container">
             <form class="search-box" action="${urlPattern}" method="get" align="center">
                 <input type="hidden" name="limit" value="${param.get("limit")}">
                 <input type="hidden" name="offset" value="0">
