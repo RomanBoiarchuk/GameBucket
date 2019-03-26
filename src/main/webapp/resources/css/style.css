@@ -55,9 +55,10 @@ form[name="login"] button, form[name="registration"] button {
     margin-bottom: 30px;
 }
 
-form[name="appendGame"] textarea {
+form[name="appendGame"] textarea, form[name="editGame"] textarea {
     width: 100%;
     height: 80px;
+    font-size: 24px;
     box-sizing: border-box;
     padding: 10px;
     resize: none;
@@ -66,7 +67,7 @@ form[name="appendGame"] textarea {
     outline:none;
 }
 
-form[name="appendGame"] input[type="file"] {
+form[name="appendGame"] input[type="file"], form[name="editGame"] input[type="file"] {
     max-width: 310px;
     box-sizing: border-box;
     padding-left: 0;
@@ -75,6 +76,33 @@ form[name="appendGame"] input[type="file"] {
 form[name="appendGame"] button {
     width: 100%;
     height: 75px;
+}
+
+form[name="editGame"] .crop {
+    margin-right: 50px;
+}
+
+.flex-buttons {
+    display: flex;
+}
+
+.flex-buttons button, .flex-buttons a {
+    margin: auto;
+}
+
+.flex-buttons a {
+    text-decoration: none;
+    color: rgba(0,0,0,0.7);
+    padding: 5 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 24px;
+    background: rgba(202,202,202,0.7);
+    box-sizing: border-box;
+}
+
+.flex-buttons a:hover {
+    background: rgba(202,202,202,1);
 }
 
 .background-body {
@@ -189,7 +217,7 @@ input, button, label {
 }
 
 .year-input {
-    width: 90px;
+    width: 100px;
     padding-right: 3px;
 }
 

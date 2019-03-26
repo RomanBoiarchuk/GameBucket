@@ -13,29 +13,62 @@
     <div class="flex-box">
         <jsp:include page="Views/menu.jsp"/>
         <div class="content-container">
-            <form action="editGame" method="post" enctype="multipart/form-data">
-                <div class="crop">
-                    <c:choose>
-                        <c:when test="${!empty game.img.trim()}">
-                            <img src="/FileDownload?filePath=gamesAvatars/${game.img}&fileType=image/png">
-                        </c:when>
-                        <c:otherwise>
-                            <img src="/resources/images/defaultGame.png">
-                        </c:otherwise>
-                    </c:choose>
-                    <input type="file" name="image">
-                </div>
-                Title <input type="text" name="title" value="${game.title}" required>
-                Release Year <input type="number" name="releaseYear" value="${game.releaseYear}" min="1958"
-                                    max=<%=Calendar.getInstance().get(Calendar.YEAR)%> required>
-                Description <textarea name="description">${game.description}</textarea>
-                <button type="submit">Confirm</button>
-                <a href="${previous}">cancel</a>
-            </form>
-            <form action="deleteGame" method="post">
-                <input type="hidden" name="previous" value="${previous}">
-                <input type="hidden" name="gameId" value="${game.id}">
-                <button type="submit">Delete Game</button>
+            <form action="editGame" name="editGame" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td rowspan="3">
+                            <div class="crop">
+                                <c:choose>
+                                    <c:when test="${!empty game.img.trim()}">
+                                        <img src="/FileDownload?filePath=gamesAvatars/${game.img}&fileType=image/png">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="/resources/images/defaultGame.png">
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </td>
+                        <td>
+                            <label>Title</label>
+                        </td>
+                        <td>
+                            <input type="text" value="${game.title}" name="title" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Release Year</label>
+                        </td>
+                        <td>
+                            <input type="number" value="${game.releaseYear}" class="year-input" name="releaseYear" min="1958"
+                                   max=<%=Calendar.getInstance().get(Calendar.YEAR)%> required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Description</label>
+                        </td>
+                        <td>
+                            <textarea type="text" name="description">${game.description}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="file" name="image">
+                        </td>
+                        <td colspan="2">
+                            <div class="flex-buttons">
+                                <button type="submit">Confirm</button>
+                                <form action="deleteGame" align="center" method="post">
+                                    <input type="hidden" name="previous" value="${previous}">
+                                    <input type="hidden" name="gameId" value="${game.id}">
+                                    <button type="submit">Delete Game</button>
+                                </form>
+                                <a href="${previous}">Cancel</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </form>
         </div>
     </div>
