@@ -12,12 +12,38 @@
             <jsp:include page="Views/menu.jsp"/>
             <div class="content-container">
                 <form name="login" action="login" method="post" onsubmit="return validateEntry();">
-                    <h2>Login</h2>
-                    email <input type="email" name="email" required><br>
-                    password <input type="password" name="password" required><br>
-                    <p id="loginError"></p>
-                    <button type="submit" value="Log in">Log in</button>
-                    <a href="/registration">Sign up</a>
+                    <h1 align="center">Login</h1>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>email</label>
+                            </td>
+                            <td>
+                                <input type="email" name="email" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>password</label>
+                            </td>
+                            <td>
+                                <input type="password" name="password" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><p id="loginError"></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" value="Log in">Log in</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/registration" align="right">Sign up</a>
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </div>
         </div>

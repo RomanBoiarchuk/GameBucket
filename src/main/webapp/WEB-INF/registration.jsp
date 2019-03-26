@@ -12,13 +12,51 @@
             <jsp:include page="Views/menu.jsp"/>
             <div class="content-container">
                 <form name="registration" action="registration" method="post">
-                    <h2>Registration</h2>
-                    email <input type="email" name="email" required onchange="validateEmail(this);"><br>
-                    nickname <input name="nickname" required onchange="validateNickname(this);"><br>
-                    password <input id="password" type="password" name="password" minlength="6" onchange="validatePassword();" required><br>
-                    confirm password <input id="confirmedPassword" type="password" name="confirmedPassword" onchange="validatePassword();" required><br>
-                    <button type="submit" value="Sign up">Sign up</button>
-                    <a href="/login">Log in</a>
+                    <h1 align="center">Registration</h1>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>email</label>
+                            </td>
+                            <td>
+                                <input type="email" name="email" required onchange="validateEmail(this);">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>nickname</label>
+                            </td>
+                            <td>
+                                <input name="nickname" required onchange="validateNickname(this);">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>password</label>
+                            </td>
+                            <td>
+                                <input id="password" type="password" name="password" minlength="6" onchange="validatePassword();" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>confirm password</label>
+                            </td>
+                            <td>
+                                <input id="confirmedPassword" type="password" name="confirmedPassword" onchange="validatePassword();" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" value="Sign up">Sign up</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/login">Log in</a>
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </div>
         </div>

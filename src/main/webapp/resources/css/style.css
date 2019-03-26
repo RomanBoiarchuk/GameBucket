@@ -8,9 +8,11 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100vh;
 }
+
 p {
     font-size: 24px;
 }
+
 input {
     font-size: 24px;
     padding: 10px;
@@ -26,6 +28,31 @@ button {
 button:hover {
     background: rgba(202,202,202,1);
     cursor: pointer;
+}
+
+form label {
+    font-size: 24px;
+    margin-right: 25px;
+    opacity: 1;
+}
+
+form input {
+    margin-bottom: 15px;
+}
+
+form a {
+    font-size: 18px;
+}
+
+form p {
+    color: #b73d24;
+    margin-bottom: 15px;
+}
+
+form[name="login"] button, form[name="registration"] button {
+    width: 100%;
+    height: 75px;
+    margin-bottom: 30px;
 }
 
 .background-body {
