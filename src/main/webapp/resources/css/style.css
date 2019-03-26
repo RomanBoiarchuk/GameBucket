@@ -9,6 +9,13 @@ body {
     background-size: 100% 100vh;
 }
 
+.header-text {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 50px;
+    font-size: 50px;
+}
+
 p {
     font-size: 24px;
 }

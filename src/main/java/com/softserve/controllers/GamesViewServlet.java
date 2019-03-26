@@ -90,11 +90,14 @@ public class GamesViewServlet extends HttpServlet {
         GamesGetter gamesGetter = (GamesGetter) req.getAttribute("gamesGetter");
         Set<GameDto> gameDtos = converter.convert(gamesGetter.getGames(offset, limit,
                 seek, fromYear, toYear));
+        boolean nextPageExists = !gamesGetter.getGames(offset + limit, 1,
+                seek, fromYear, toYear).isEmpty();
         User user = (User) req.getSession().getAttribute("user");
         Map<GameDto, Boolean> playLaterNotesExist = playLaterNotesExist(gameDtos, user);
         Map<GameDto, Integer> gamesMarks = gamesMarks(gameDtos, user);
         String urlPattern = (String) req.getAttribute("urlPattern");
         req.setAttribute("gameDtos", gameDtos);
+        req.setAttribute("nextPageExists", nextPageExists);
         req.setAttribute("playLaterNotesExist", playLaterNotesExist);
         req.setAttribute("gamesMarks", gamesMarks);
         req.getRequestDispatcher("WEB-INF/games.jsp?offset=" + offset

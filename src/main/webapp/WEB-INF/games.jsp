@@ -16,6 +16,8 @@
         <jsp:include page="Views/menu.jsp"/>
         <div class="content-container games-container">
 
+            <h1 class="header-text">GAME BUCKET</h1>
+
             <form class="search-box" action="${urlPattern}" method="get" align="center">
                 <input type="hidden" name="limit" value="${param.get("limit")}">
                 <input type="hidden" name="offset" value="0">
@@ -42,12 +44,12 @@
                 </c:choose>
 
                 <c:choose>
-                    <c:when test="${empty gameDtos}">
-                        <a class="forward" href="">&raquo;</a>
-                    </c:when>
-                    <c:otherwise>
+                    <c:when test="${nextPageExists}">
                         <a class="forward" href="${urlPattern}?offset=${param.get("offset") + param.get("limit")}&limit=${param.get("limit")}
 &seek=${param.get("seek")}&fromYear=${param.get("fromYear")}&toYear=${param.get("toYear")}">&raquo;</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="forward" href="">&raquo;</a>
                     </c:otherwise>
                 </c:choose>
 
