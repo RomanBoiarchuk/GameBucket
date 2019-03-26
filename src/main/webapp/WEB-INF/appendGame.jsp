@@ -12,13 +12,48 @@
     <div class="flex-box">
         <jsp:include page="Views/menu.jsp"/>
         <div class="content-container">
-            <form action="appendGame" method="post" enctype="multipart/form-data">
-                Title <input type="text" name="title" required>
-                Release Year <input type="number" name="releaseYear" min="1958"
-                                    max=<%=Calendar.getInstance().get(Calendar.YEAR)%> required>
-                Description <input type="text" name="description">
-                Avatar <input type="file" name="image">
-                <button type="submit">Add Game</button>
+            <form action="appendGame" name="appendGame" method="post" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Title</label>
+                        </td>
+                        <td>
+                            <input type="text" name="title" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Release Year</label>
+                        </td>
+                        <td>
+                            <input type="number" class="year-input" name="releaseYear" min="1958"
+                                   max=<%=Calendar.getInstance().get(Calendar.YEAR)%> required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Description</label>
+                        </td>
+                        <td>
+                            <textarea type="text" name="description"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Avatar</label>
+                        </td>
+                        <td>
+                            <input type="file" name="image">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">Add Game</button>
+                        </td>
+                    </tr>
+                </table>
+
             </form>
         </div>
     </div>
