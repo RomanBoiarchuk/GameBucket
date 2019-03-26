@@ -15,12 +15,13 @@
     <div class="flex-box">
         <jsp:include page="Views/menu.jsp"/>
         <div class="content-container games-container">
+
             <form class="search-box" action="${urlPattern}" method="get" align="center">
                 <input type="hidden" name="limit" value="${param.get("limit")}">
                 <input type="hidden" name="offset" value="0">
                 <input type="text" name="seek" value="${param.get("seek")}" placeholder="search">
                 <input class="year-input" type="number" name="fromYear" value="${param.get("fromYear")}" min="1958"
-                                 max=<%=Calendar.getInstance().get(Calendar.YEAR)%>>
+                                 max=<%=Calendar.getInstance().get(Calendar.YEAR)%>> -
                 <input class="year-input" type="number" name="toYear" value="${param.get("toYear")}"
                                min="1958" max=<%=Calendar.getInstance().get(Calendar.YEAR)%>>
                 <button type="submit">Search</button>
@@ -29,6 +30,7 @@
             <jsp:include page="Views/gamesView.jsp"/>
 
             <div class="pagination">
+
                 <c:choose>
                     <c:when test='${param.get("offset") / param.get("limit") == 0}'>
                         <a href="">&laquo;</a>
@@ -38,6 +40,7 @@
 &seek=${param.get("seek")}&fromYear=${param.get("fromYear")}&toYear=${param.get("toYear")}">&laquo;</a>
                     </c:otherwise>
                 </c:choose>
+
                 <c:choose>
                     <c:when test="${empty gameDtos}">
                         <a class="forward" href="">&raquo;</a>
@@ -47,6 +50,7 @@
 &seek=${param.get("seek")}&fromYear=${param.get("fromYear")}&toYear=${param.get("toYear")}">&raquo;</a>
                     </c:otherwise>
                 </c:choose>
+
             </div>
         </div>
     </div>

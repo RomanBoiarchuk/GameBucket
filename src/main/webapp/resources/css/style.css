@@ -8,6 +8,25 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100vh;
 }
+p {
+    font-size: 24px;
+}
+input {
+    font-size: 24px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    font-size: 24px;
+    padding: 5px 15px;
+    border: 1px solid black;
+}
+
+button:hover {
+    background: rgba(202,202,202,1);
+    cursor: pointer;
+}
 
 .background-body {
     background: rgba(236,236,236,0.6);
@@ -115,22 +134,13 @@ input, button, label {
 /* ************ SEARCH ********** */
 .search-box input {
     height: 30px;
-    padding: 10px;
+    padding: 20px 10px;
     margin-right: 10px;
-}
-
-.search-box button {
-    padding: 5px 15px;
-    border: 1px solid black;
-}
-
-.search-box button:hover {
-    background: rgba(202,202,202,1);
-    cursor: pointer;
+    margin-left: 10px;
 }
 
 .search-box .year-input {
-    width: 65px;
+    width: 90px;
     padding-right: 3px;
 }
 
