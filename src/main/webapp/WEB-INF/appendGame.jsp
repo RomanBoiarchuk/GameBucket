@@ -36,7 +36,7 @@
                             <label>Description</label>
                         </td>
                         <td>
-                            <textarea type="text" name="description"></textarea>
+                            <textarea wrap="hard" type="text" name="description"></textarea>
                         </td>
                     </tr>
                     <tr>

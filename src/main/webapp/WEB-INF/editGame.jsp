@@ -49,7 +49,7 @@
                             <label>Description</label>
                         </td>
                         <td>
-                            <textarea type="text" name="description">${game.description}</textarea>
+                            <textarea wrap="hard" type="text" name="description">${game.description}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -59,11 +59,7 @@
                         <td colspan="2">
                             <div class="flex-buttons">
                                 <button type="submit">Confirm</button>
-                                <form action="deleteGame" align="center" method="post">
-                                    <input type="hidden" name="previous" value="${previous}">
-                                    <input type="hidden" name="gameId" value="${game.id}">
-                                    <button type="submit">Delete Game</button>
-                                </form>
+                                <a href="/deleteGame?previous=${previous}&gameId=${game.id}">Delete Game</a>
                                 <a href="${previous}">Cancel</a>
                             </div>
                         </td>

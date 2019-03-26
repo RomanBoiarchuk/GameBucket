@@ -18,7 +18,7 @@ import java.io.IOException;
 public class DeleteGameServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         User user = (User)req.getSession().getAttribute("user");
         if (user == null) {
