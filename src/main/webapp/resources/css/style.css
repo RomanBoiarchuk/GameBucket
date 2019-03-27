@@ -346,4 +346,79 @@ input, button, label {
 .fa-window-close:disabled {
     color: blue;
 }
+/* ****** MEDIA QUERIES ********* */
+@media (max-width: 1400px) {
+    .games-container {
+        width: 60%;
+        min-width: 60%;
+    }
+    .game-list li {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .game-list li .crop {
+        margin: auto;
+    }
+    .game-list li .game-info {
+        margin: auto;
+        margin-top: 50px;
+        width: 351px;
+    }
+    .search-box input[name="seek"] {
+        display: block;
+        margin:auto;
+        margin-bottom: 25px;
+    }
+    .pagination {
+        position: initial;
+    }
+    .edit-menu {
+        display: none;
+    }
+    .edit-page-table td {
+        display: table-row;
+    }
+}
 
+@media screen and (max-width: 950px){
+    .menu {
+        margin-top: 40px;
+    }
+    .menu ul {
+        border-radius: 20px;
+        text-align: center;
+        width: 60%;
+        margin: auto;
+        margin-bottom: 40px;
+    }
+    .menu ul li {
+        display: inline;
+        width: auto;
+        margin-right: 5px;
+        border: none;
+    }
+    .menu ul li a {
+        border: none;
+        border-radius: 0;
+        width: auto;
+        height: initial;
+        display: inline-block;
+    }
+    .flex-box {
+        flex-direction: column;
+    }
+    .content-container {
+        margin: auto;
+    }
+}
+@media screen and (max-width: 700px) {
+    table td {
+        display: table-row;
+    }
+    .games-container {
+        width: 95%;
+    }
+    .menu ul {
+        width: 95%;
+    }
+}

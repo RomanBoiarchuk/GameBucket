@@ -11,12 +11,12 @@
 <body>
 <div class="background-body">
     <div class="flex-box">
-        <jsp:include page="Views/menu.jsp"/>
+        <div class="edit-menu"><jsp:include page="Views/menu.jsp"/></div>
         <div class="content-container">
             <form action="editGame" name="editGame" method="post" enctype="multipart/form-data">
-                <table>
+                <table class="edit-page-table">
                     <tr>
-                        <td rowspan="3">
+                        <td rowspan="3" class="first-col">
                             <div class="crop">
                                 <c:choose>
                                     <c:when test="${!empty game.img.trim()}">
@@ -53,7 +53,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="first-col">
                             <input type="file" name="image">
                         </td>
                         <td colspan="2">
