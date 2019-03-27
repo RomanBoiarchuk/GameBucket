@@ -177,7 +177,7 @@ public class MarksDaoImp implements MarksDao {
         String selectUserString = "SELECT * FROM games "
                 + "JOIN marks ON games.id = marks.gameId "
                 + "WHERE marks.userId=? AND UPPER(title) LIKE UPPER(?) "
-                + "AND releaseYear BETWEEN ? and ? "
+                + "AND releaseYear BETWEEN ? and ? ORDER BY id DESC "
                 + "LIMIT ? OFFSET ?;";
         try {
             select = connection.prepareStatement(selectUserString);

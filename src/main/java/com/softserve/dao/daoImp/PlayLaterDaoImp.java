@@ -132,7 +132,7 @@ public class PlayLaterDaoImp implements PlayLaterDao {
         String selectUserString = "SELECT * FROM games "
                 + "JOIN play_later ON games.id = play_later.gameId "
                 + "WHERE play_later.userId=? AND UPPER(title) LIKE UPPER(?) "
-                + "AND releaseYear BETWEEN ? and ? "
+                + "AND releaseYear BETWEEN ? and ? ORDER BY id DESC "
                 + "LIMIT ? OFFSET ?;";
         try {
             select = connection.prepareStatement(selectUserString);

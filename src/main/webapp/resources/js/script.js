@@ -91,3 +91,14 @@ function unhoverStars(divId, index) {
         stars[i].classList.remove('unhovered-star');
     }
 }
+
+function toggleParagraph(gameId) {
+    let p = $("#game-paragraph-" + gameId);
+    if (p.css('max-height') == '100%') {
+        p.css({'max-height': '140px'});
+        $("#toggle-paragraph-" + gameId).text("Show more");
+    } else {
+        p.css({'max-height': '100%'});
+        $("#toggle-paragraph-" + gameId).text("Show less");
+    }
+}

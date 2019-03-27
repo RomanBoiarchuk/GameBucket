@@ -10,6 +10,7 @@ body {
 }
 
 .header-text {
+    cursor: default;
     text-align: center;
     margin: 0;
     padding-bottom: 50px;
@@ -177,6 +178,7 @@ form[name="editGame"] .crop {
     overflow: hidden;
     width: 350px;
     height: 300px;
+    max-height: 500px;
 }
 
 .crop img {
@@ -184,7 +186,7 @@ form[name="editGame"] .crop {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
 }
 
 .crop .editBox {
@@ -247,6 +249,19 @@ input, button, label {
 }
 
 /* ************ GAMES  ********** */
+.toggle-paragraph {
+    padding: 0;
+    text-decoration: underline;
+    background: transparent;
+    border: none;
+    font-size: 17px;
+    color:blue;
+}
+
+.toggle-paragraph:hover {
+    background: transparent;
+}
+
 .game-list {
     margin: 0;
     padding: 0;
@@ -289,6 +304,8 @@ input, button, label {
 
 .game-info p {
     max-width: 350px;
+    max-height: 140px;
+    margin-bottom: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
 }

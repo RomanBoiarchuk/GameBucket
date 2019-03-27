@@ -68,7 +68,9 @@
                                 onclick="deleteMark(${gameDto.id});" title="cancel"></span>
                     </div>
                 </div>
-                <p>${gameDto.description}</p>
+                <p id="game-paragraph-${gameDto.id}">${gameDto.description}</p>
+                <button class="toggle-paragraph" id="toggle-paragraph-${gameDto.id}"
+                        onclick="toggleParagraph(${gameDto.id},);">Show more</button>
             </div>
         </li>
     </c:forEach>

@@ -187,7 +187,7 @@ public class GamesDaoImp implements GamesDao {
         Set<Game> games = new HashSet<>();
         String selectUserString = "SELECT * FROM games "
                 + "WHERE UPPER(title) LIKE UPPER(?) AND "
-                + "releaseYear BETWEEN ? AND ? "
+                + "releaseYear BETWEEN ? AND ? ORDER BY id DESC "
                 + "LIMIT ? OFFSET ?;";
         try {
             select = connection.prepareStatement(selectUserString);
