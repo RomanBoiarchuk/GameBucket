@@ -104,10 +104,4 @@ public class GamesViewServlet extends HttpServlet {
                 + "&limit=" + limit + "&seek=" + seek + "&fromYear="
                 + fromYear + "&toYear=" + toYear).forward(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-    }
 }

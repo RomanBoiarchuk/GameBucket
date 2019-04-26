@@ -29,10 +29,8 @@ public class PlayLaterToggleServlet extends HttpServlet {
         if (exists) {
             dao.delete(playLaterNote);
             exists = false;
-        } else {
-            if (dao.add(playLaterNote)) {
-                exists = true;
-            }
+        } else if (dao.add(playLaterNote)) {
+            exists = true;
         }
         JSONObject result = new JSONObject();
         result.put("on", exists);

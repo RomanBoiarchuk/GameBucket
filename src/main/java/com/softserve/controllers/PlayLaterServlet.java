@@ -30,10 +30,4 @@ public class PlayLaterServlet extends HttpServlet {
             req.getRequestDispatcher("/gamesView").forward(req, resp);
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
 }
